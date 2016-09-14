@@ -9,13 +9,6 @@ import App from './src/app'
 
 
 class fireApp extends Component {
-  componentWillMount(){
-    isUserLoggedIn().then(res => {
-      console.log(res);
-    })
-  }
-
-
   constructor(props) {
     super(props);
   

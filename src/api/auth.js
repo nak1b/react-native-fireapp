@@ -30,6 +30,7 @@ export function login(email, password) {
   return firebaseApp.auth().signInWithEmailAndPassword(email, password).then((res) => {
       return res;
     }).catch((error) => {
-      return error
+      console.log(error)
+      return {error:true}
     });
 }

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { NavigationExperimental, StyleSheet } from 'react-native'
+import { NavigationExperimental, StyleSheet, View } from 'react-native'
 
 import { connect } from 'react-redux'
 import { navigatePop } from '../actions/NavActions'
+import { isAuthenticated } from '../actions/SessionActions'
 
 import Login from '../components/Login'
 
@@ -21,6 +22,10 @@ class AppContainer extends Component {
 
     this._renderHeader = this._renderHeader.bind(this)
     this._renderScene = this._renderScene.bind(this)
+  }
+
+  componentWillMount() {
+    this.props.isAuthenticated()
   }
 
   
@@ -46,7 +51,11 @@ class AppContainer extends Component {
   }
 
   render() {
-    const { navigationState, backAction } = this.props
+    const { navigationState, backAction, isAuthenticated } = this.props
+
+    if(isAuthenticated){
+      return <View style={{flex:1, backgroundColor: 'orange'}} />
+    }
 
     return (
       <NavigationCardStack
@@ -70,12 +79,17 @@ const styles = StyleSheet.create({
 
 export default connect(
   state => ({
-    navigationState: state.navigationState
+    navigationState: state.navigationState,
+    isAuthenticated: state.SessionReducer.isLoggedIn
   }),
 
   dispatch => ({
     backAction: () => {
       dispatch(navigatePop())
+    },
+
+    isAuthenticated: () => {
+      dispatch(isAuthenticated())
     }
   })
 )(AppContainer)

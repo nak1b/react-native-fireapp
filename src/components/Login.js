@@ -5,6 +5,9 @@ const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 import {signUp} from '../api/auth'
+import {userLogin} from '../actions/SessionActions'
+
+import { connect } from 'react-redux'
 
 class Login extends Component {
   constructor(props) {
@@ -17,10 +20,12 @@ class Login extends Component {
   }
 
   register() {
-    signUp(this.state.email, this.state.password).then(res => {
-      console.log(res)
-    })
+    // signUp(this.state.email, this.state.password).then(res => {
+    //   console.log(res)
+    // })
+    this.props.login(this.state.email, this.state.password)
   }
+
   render() {
     return (
       <View style={styles.container}>
@@ -29,6 +34,7 @@ class Login extends Component {
             onChangeText={(text) => this.setState({email: text})}
             placeholder="Email" 
             keyboardType='email-address'
+            autoCapitalize='none'
             style={styles.textInput} />
           
           <View style={styles.divider} />
@@ -124,4 +130,14 @@ const styles = StyleSheet.create({
 })
 
 
-export default Login
+export default connect(
+  state => ({
+    navigationState: state.navigationState
+  }),
+
+  dispatch => ({
+    login: (username, password) => {
+      dispatch(userLogin(username, password))
+    }
+  })
+)(Login)
