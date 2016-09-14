@@ -3,6 +3,9 @@ import { AppRegistry, StyleSheet, Text, View } from 'react-native';
 
 import * as firebase from 'firebase';
 
+
+import Login from './src/components/Login'
+
 // Initialize Firebase
 const config = {
   apiKey: "AIzaSyAbeQdYYB9mBpW2eNJRvxl4R7CxZBRxHAw",
@@ -19,7 +22,7 @@ class fireApp extends Component {
   render() {
     return (
       <View style={styles.container}>
-
+        <Login />
       </View>
     );
   }
@@ -30,7 +33,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   }
 });
 

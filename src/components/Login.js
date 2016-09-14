@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Dimensions, Image, TextInput, TouchableOpacity, View, Text, StyleSheet } from 'react-native'
+import { Dimensions, TextInput, TouchableOpacity, View, Text, StyleSheet } from 'react-native'
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -29,8 +29,12 @@ class Login extends Component {
             style={styles.textInput} />
         </View>
 
-        <TouchableOpacity activeOpacity={0.8} style={styles.loginBtn} onPress={this.props.buttonHandler}>
+        <TouchableOpacity activeOpacity={0.8} style={styles.loginBtn} onPress={() => console.log("Login")}>
           <Text style={styles.btnText}>LOGIN</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity activeOpacity={0.8} style={styles.signUpBtn} onPress={() => console.log("SignUp")}>
+          <Text style={[styles.signUpBtnText]}>Sign Up</Text>
         </TouchableOpacity>
       </View>
     )
@@ -86,6 +90,25 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     color: '#FFF',
   },
+
+  signUpBtn: {
+    position: 'absolute',
+    bottom: 20,
+    right: 0,
+    width: 80,
+    height: 36,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#AAA',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  signUpBtnText: {
+    fontFamily: "Helvetica",
+    fontSize: 14,
+    color: '#AAA'
+  }
 
 })
 
