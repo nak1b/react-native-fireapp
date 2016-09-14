@@ -4,6 +4,7 @@ import { Dimensions, TextInput, TouchableOpacity, View, Text, StyleSheet } from 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
+import {signUp} from '../api/auth'
 
 class Login extends Component {
   constructor(props) {
@@ -15,6 +16,11 @@ class Login extends Component {
     };
   }
 
+  register() {
+    signUp(this.state.email, this.state.password).then(res => {
+      console.log(res)
+    })
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -34,7 +40,7 @@ class Login extends Component {
             style={styles.textInput} />
         </View>
 
-        <TouchableOpacity activeOpacity={0.8} style={styles.loginBtn} onPress={() => this.props.signUp(this.state.email, this.state.password)}>
+        <TouchableOpacity activeOpacity={0.8} style={styles.loginBtn} onPress={this.register.bind(this)}>
           <Text style={styles.btnText}>LOGIN</Text>
         </TouchableOpacity>
 

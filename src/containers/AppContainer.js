@@ -23,6 +23,7 @@ class AppContainer extends Component {
     this._renderScene = this._renderScene.bind(this)
   }
 
+  
   _renderScene({scene}) {
     return <Login />
   }
@@ -31,7 +32,7 @@ class AppContainer extends Component {
     const hideNav = props.scene.route.HIDE_NAV;
 
     if(hideNav) return 
-      
+
     return (
       <NavigationHeader
         {...props}
@@ -45,7 +46,7 @@ class AppContainer extends Component {
   }
 
   render() {
-    let { navigationState, backAction } = this.props
+    const { navigationState, backAction } = this.props
 
     return (
       <NavigationCardStack

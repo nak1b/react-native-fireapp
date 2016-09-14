@@ -1,25 +1,21 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View } from 'react-native';
 
-import * as firebase from 'firebase';
+import {isUserLoggedIn} from './src/api/auth'
 
 
 import Login from './src/components/Login'
 import App from './src/app'
 
-// Initialize Firebase
-const config = {
-  apiKey: "AIzaSyAbeQdYYB9mBpW2eNJRvxl4R7CxZBRxHAw",
-  authDomain: "fireapp-4c333.firebaseapp.com",
-  databaseURL: "https://fireapp-4c333.firebaseio.com",
-  storageBucket: "",
-};
-
-const firebaseApp = firebase.initializeApp(config);
-
-
 
 class fireApp extends Component {
+  componentWillMount(){
+    isUserLoggedIn().then(res => {
+      console.log(res);
+    })
+  }
+
+
   constructor(props) {
     super(props);
   
@@ -29,12 +25,7 @@ class fireApp extends Component {
   }
 
   signUp(email, password) {
-    firebaseApp.auth().createUserWithEmailAndPassword(email, password).then(() => {
-      console.log('Your account was created!');
-
-    }).catch((error) => {
-      console.log('Error craeting account ', error);
-    })
+   
   }
 
   render() {
