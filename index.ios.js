@@ -5,6 +5,7 @@ import * as firebase from 'firebase';
 
 
 import Login from './src/components/Login'
+import App from './src/app'
 
 // Initialize Firebase
 const config = {
@@ -38,18 +39,14 @@ class fireApp extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Login signUp={this.signUp} />
-      </View>
-    );
+      <App />
+    )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   }
 });
 

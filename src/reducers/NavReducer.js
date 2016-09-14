@@ -1,10 +1,10 @@
 import * as NavigationStateUtils from 'NavigationStateUtils'
 
-import { NAV_PUSH, NAV_POP, NAV_JUMP_TO_KEY, NAV_JUMP_TO_KEY, NAV_RESET } from '../actions/NavActions'
+import { NAV_PUSH, NAV_POP, NAV_JUMP_TO_KEY, NAV_JUMP_TO_INDEX, NAV_RESET } from '../actions/NavActions'
 
 const initialState = {
   index: 0,
-  routes: [{key: 'Login'}]
+  routes: [{key: 'Login', HIDE_NAV: true}]
 }
 
 function navigationState(state=initialState, action) {
@@ -22,7 +22,7 @@ function navigationState(state=initialState, action) {
     case NAV_JUMP_TO_KEY:
       return NavigationStateUtils.jumpTo(state, action.key)
 
-    case NAV_JUMP_TO_KEY:
+    case NAV_JUMP_TO_INDEX:
       return NavigationStateUtils.jumpToIndex(state, action.index)
   
     case NAV_RESET:
@@ -34,7 +34,6 @@ function navigationState(state=initialState, action) {
 
     default:
       return state
-    }
   }
 } 
 

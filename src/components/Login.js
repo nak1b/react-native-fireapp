@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   signUpBtn: {
     position: 'absolute',
     bottom: 20,
-    right: 0,
+    right: 30,
     width: 80,
     height: 36,
     borderRadius: 20,
