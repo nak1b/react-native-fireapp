@@ -9,7 +9,10 @@ class Login extends Component {
   constructor(props) {
     super(props);
   
-    this.state = {};
+    this.state = {
+      email: '',
+      password: ''
+    };
   }
 
   render() {
@@ -17,6 +20,7 @@ class Login extends Component {
       <View style={styles.container}>
         <View style={styles.loginContainer}>
           <TextInput
+            onChangeText={(text) => this.setState({email: text})}
             placeholder="Email" 
             keyboardType='email-address'
             style={styles.textInput} />
@@ -24,12 +28,13 @@ class Login extends Component {
           <View style={styles.divider} />
           
           <TextInput
+            onChangeText={(text) => this.setState({password: text})}
             placeholder="Password" 
             secureTextEntry={true}
             style={styles.textInput} />
         </View>
 
-        <TouchableOpacity activeOpacity={0.8} style={styles.loginBtn} onPress={() => console.log("Login")}>
+        <TouchableOpacity activeOpacity={0.8} style={styles.loginBtn} onPress={() => this.props.signUp(this.state.email, this.state.password)}>
           <Text style={styles.btnText}>LOGIN</Text>
         </TouchableOpacity>
 

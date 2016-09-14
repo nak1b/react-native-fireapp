@@ -14,15 +14,32 @@ const config = {
   storageBucket: "",
 };
 
-firebase.initializeApp(config);
+const firebaseApp = firebase.initializeApp(config);
 
 
 
 class fireApp extends Component {
+  constructor(props) {
+    super(props);
+  
+    this.state = {};
+
+    this.signUp = this.signUp.bind(this)
+  }
+
+  signUp(email, password) {
+    firebaseApp.auth().createUserWithEmailAndPassword(email, password).then(() => {
+      console.log('Your account was created!');
+
+    }).catch((error) => {
+      console.log('Error craeting account ', error);
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Login />
+        <Login signUp={this.signUp} />
       </View>
     );
   }
