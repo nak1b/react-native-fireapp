@@ -1,15 +1,22 @@
-import { AUTH_SUCCESS, AUTH_FAILED, LOGOUT } from '../actions/SessionActions'
+import { AUTH_SUCCESS, AUTH_FAILED, LOGOUT, ATTEMPTING_LOGIN, 
+         AWAITING_AUTH_RESPONSE, LOGGED_IN, ANONYMOUS } from '../actions/SessionActions'
 
 const initialState = {
-  isLoggedIn: false,
+  authType: ANONYMOUS,
   user: null
 }
 
 function sessionReducer(state=initialState, action) {
   switch(action.type) {
+    case ATTEMPTING_LOGIN: 
+      return {
+        ...state,
+        authType: AWAITING_AUTH_RESPONSE
+      }
+
     case AUTH_SUCCESS: 
       return {
-        isLoggedIn: true,
+        authType:  LOGGED_IN,
         user:action.payload
       }
 

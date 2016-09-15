@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { NavigationExperimental, StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import { NavigationExperimental, StyleSheet, View, Text, ActivityIndicator, TouchableOpacity } from 'react-native'
 
 import { connect } from 'react-redux'
 import { navigatePop } from '../actions/NavActions'
-import { isAuthenticated, userLogout } from '../actions/SessionActions'
+import { isAuthenticated, userLogout, AWAITING_AUTH_RESPONSE, LOGGED_IN, ANONYMOUS } from '../actions/SessionActions'
 
 import Login from '../components/Login'
 
@@ -51,9 +51,15 @@ class AppContainer extends Component {
   }
 
   render() {
-    const { navigationState, backAction, isLoggedIn, logout} = this.props
+    const { navigationState, backAction, authType, logout} = this.props
 
-    if(isLoggedIn){
+    if(authType === AWAITING_AUTH_RESPONSE) {
+      return <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+        <ActivityIndicator />
+      </View>
+    }
+
+    if(authType === LOGGED_IN){
       return <View style={{flex:1, backgroundColor: 'orange', justifyContent: 'center', alignItems: 'center'}}>
         <TouchableOpacity onPress={logout}>
           <Text>Logout</Text>
@@ -84,7 +90,7 @@ const styles = StyleSheet.create({
 export default connect(
   state => ({
     navigationState: state.navigationState,
-    isLoggedIn: state.SessionReducer.isLoggedIn
+    authType: state.SessionReducer.authType
   }),
 
   dispatch => ({
