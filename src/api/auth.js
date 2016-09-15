@@ -16,7 +16,6 @@ export function isUserLoggedIn() {
   }); 
 }
 
-
 export function signUp(email, password) {
   return firebaseApp.auth().createUserWithEmailAndPassword(email, password).then((res) => {
       return res;
@@ -33,4 +32,9 @@ export function login(email, password) {
       console.log(error)
       return {error:true}
     });
+}
+
+
+export function logout() {
+  return firebaseApp.auth().signOut()
 }

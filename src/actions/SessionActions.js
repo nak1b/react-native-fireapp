@@ -1,4 +1,4 @@
-import { login, isUserLoggedIn } from '../api/auth';
+import { login, logout, isUserLoggedIn } from '../api/auth';
 
 // Action Types
 
@@ -20,6 +20,12 @@ export function authFailed() {
   }
 }
 
+export function authLogout() {
+  return {
+    type: LOGOUT
+  }
+}
+
 export function isAuthenticated() {
   return (dispatch) => {
     isUserLoggedIn().then(res => {
@@ -38,6 +44,14 @@ export function userLogin(email, password) {
       }else{
         dispatch(authFailed())
       }
+    })
+  }
+}
+
+export function userLogout() {
+  return (dispatch) => {
+    logout().then(() => {
+      dispatch(authLogout())
     })
   }
 }
