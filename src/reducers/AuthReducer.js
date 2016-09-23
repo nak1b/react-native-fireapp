@@ -1,5 +1,5 @@
 import { AUTH_SUCCESS, AUTH_FAILED, LOGOUT, ATTEMPTING_LOGIN, 
-         AWAITING_AUTH_RESPONSE, LOGGED_IN, ANONYMOUS } from '../actions/SessionActions'
+         AWAITING_AUTH_RESPONSE, LOGGED_IN, ANONYMOUS } from '../actions/AuthActions'
 
 const initialState = {
   authType: ANONYMOUS,

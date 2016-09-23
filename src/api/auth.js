@@ -3,6 +3,7 @@ import config from './firebase.config'
 
 const firebaseApp = firebase.initializeApp(config);
 
+
 export function isUserLoggedIn() {
   return new Promise((resolve, reject) => {
 
@@ -24,7 +25,6 @@ export function signUp(email, password) {
     });
 }
 
-
 export function login(email, password) {
   return firebaseApp.auth().signInWithEmailAndPassword(email, password).then((res) => {
       return res;
@@ -33,7 +33,6 @@ export function login(email, password) {
       return {error:true}
     });
 }
-
 
 export function logout() {
   return firebaseApp.auth().signOut()

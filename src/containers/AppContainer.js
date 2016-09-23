@@ -3,7 +3,7 @@ import { NavigationExperimental, StyleSheet, View, Text, ActivityIndicator, Touc
 
 import { connect } from 'react-redux'
 import { navigatePop } from '../actions/NavActions'
-import { isAuthenticated, userLogout, AWAITING_AUTH_RESPONSE, LOGGED_IN, ANONYMOUS } from '../actions/SessionActions'
+import { isAuthenticated, userLogout, AWAITING_AUTH_RESPONSE, LOGGED_IN, ANONYMOUS } from '../actions/AuthActions'
 
 import Login from '../components/Login'
 
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
 export default connect(
   state => ({
     navigationState: state.navigationState,
-    authType: state.SessionReducer.authType
+    authType: state.AuthReducer.authType
   }),
 
   dispatch => ({

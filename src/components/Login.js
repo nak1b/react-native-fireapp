@@ -5,7 +5,7 @@ const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 import {signUp} from '../api/auth'
-import {userLogin} from '../actions/SessionActions'
+import {userLogin} from '../actions/AuthActions'
 
 import { connect } from 'react-redux'
 

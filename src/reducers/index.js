@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 import navigationState from './NavReducer'
-import SessionReducer from './SessionReducer'
+import AuthReducer from './AuthReducer'
 
 export default combineReducers({
   navigationState,
-  SessionReducer
+  AuthReducer
 })
