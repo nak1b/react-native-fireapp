@@ -28,9 +28,8 @@ class AppContainer extends Component {
     this.props.isUserAuthenticated()
   }
 
-  
   _renderScene({scene}) {
-    return <Login />
+    return <Login {...this.props} />
   }
 
   _renderHeader(props, backAction) {
@@ -53,11 +52,11 @@ class AppContainer extends Component {
   render() {
     const { navigationState, backAction, authType, logout} = this.props
 
-    if(authType === AWAITING_AUTH_RESPONSE) {
-      return <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
-        <ActivityIndicator />
-      </View>
-    }
+    // if(authType === AWAITING_AUTH_RESPONSE) {
+    //   return <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+    //     <ActivityIndicator />
+    //   </View>
+    // }
 
     if(authType === LOGGED_IN){
       return <View style={{flex:1, backgroundColor: 'orange', justifyContent: 'center', alignItems: 'center'}}>

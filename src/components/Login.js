@@ -1,13 +1,15 @@
-import React, { Component } from 'react'
-import { Dimensions, TextInput, TouchableOpacity, View, Text, StyleSheet } from 'react-native'
+import React, { Component } from 'react';
+import { Dimensions, TextInput, TouchableOpacity, View, Text, StyleSheet } from 'react-native';
+
+import { connect } from 'react-redux';
+
+import {signUp} from '../api/auth';
+import {userLogin, AWAITING_AUTH_RESPONSE} from '../actions/AuthActions';
+import Button from './common/Button';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-import {signUp} from '../api/auth'
-import {userLogin} from '../actions/AuthActions'
-
-import { connect } from 'react-redux'
 
 class Login extends Component {
   constructor(props) {
@@ -27,6 +29,8 @@ class Login extends Component {
   }
 
   render() {
+    console.log(this.props);
+    
     return (
       <View style={styles.container}>
         <View style={styles.loginContainer}>
@@ -46,9 +50,9 @@ class Login extends Component {
             style={styles.textInput} />
         </View>
 
-        <TouchableOpacity activeOpacity={0.8} style={styles.loginBtn} onPress={this.register.bind(this)}>
-          <Text style={styles.btnText}>LOGIN</Text>
-        </TouchableOpacity>
+        <Button onPress={this.register.bind(this)} showSpinner={this.props.authType === AWAITING_AUTH_RESPONSE}>
+          LOGIN
+        </Button>
 
         <TouchableOpacity activeOpacity={0.8} style={styles.signUpBtn} onPress={() => console.log("SignUp")}>
           <Text style={[styles.signUpBtnText]}>Sign Up</Text>
@@ -86,28 +90,6 @@ const styles = StyleSheet.create({
     borderColor: '#e3e3e3',
   },
 
-  loginBtn: {
-    width: SCREEN_WIDTH - 60,
-    backgroundColor: '#f97b62',
-    height: 46,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 20,
-    borderRadius: 4,
-    shadowColor: 'rgba(0,0,0, .3)',
-    shadowOffset: { height: 1, width: 1 },
-    shadowOpacity: 1,
-    shadowRadius: 1
-  },
-
-  btnText: {
-    fontFamily: "Helvetica",
-    fontSize: 16,
-    fontWeight: 'bold',
-    letterSpacing: 1,
-    color: '#FFF',
-  },
-
   signUpBtn: {
     position: 'absolute',
     bottom: 20,
@@ -132,7 +114,7 @@ const styles = StyleSheet.create({
 
 export default connect(
   state => ({
-    navigationState: state.navigationState
+
   }),
 
   dispatch => ({
